@@ -18,6 +18,7 @@ extension CloudKitCompilant: ExtensionMacro {
         conformingTo protocols: [SwiftSyntax.TypeSyntax],
         in context: some SwiftSyntaxMacros.MacroExpansionContext
     ) throws -> [Syntax] {
+        let coreModelName: String = declaration.as(ClassDeclSyntax.self)!.name.text
         let memberBlock = declaration.memberBlock
         let variables: [VarDeclInfo] = memberBlock.members
             .map({ $0.decl })
@@ -57,7 +58,7 @@ extension CloudKitCompilant: ExtensionMacro {
         
         // Report errors, if they exist
         guard missingDefaultValues.count == 0 else {
-            throw Error.missingDefaultValue(modelName: "Sus", properties: missingDefaultValues)
+            throw Error.missingDefaultValue(modelName: coreModelName, properties: missingDefaultValues)
         }
         
         return []

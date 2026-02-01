@@ -4,7 +4,7 @@ import SwiftData
 @available(macOS 14, *)
 @Model @CloudKitCompilant
 class SampleModel {
-    var name: String
+    var name: String = ""
     var anotherSus: Int?
     var optionalValue: Bool?
     
