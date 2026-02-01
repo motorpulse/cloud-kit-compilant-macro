@@ -1,8 +1,20 @@
 import CloudKitCompilant
+import SwiftData
 
-let a = 17
-let b = 25
-
-let (result, code) = #stringify(a + b)
-
-print("The value \(result) was produced by the code \"\(code)\"")
+@available(macOS 14, *)
+@Model @CloudKitCompilant
+class SampleModel {
+    var name: String
+    var anotherSus: Int?
+    var optionalValue: Bool?
+    
+    init(
+        name: String,
+        anotherSus: Int,
+        optionalValue: Bool? = nil
+    ) {
+        self.name = name
+        self.anotherSus = anotherSus
+        self.optionalValue = optionalValue
+    }
+}
